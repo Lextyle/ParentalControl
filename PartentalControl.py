@@ -6,6 +6,7 @@ pygame.init()
 window_width, window_height = size()
 window = pygame.display.set_mode((window_width, window_height), pygame.FULLSCREEN)
 font = pygame.font.Font("SFPixelate.ttf", 50)
+font_2 = pygame.font.Font("SFPixelate.ttf", 25)
 def password_changes(change_type):
 	if change_type == "Create Password":
 		password_EntryField = EntryField(window_width // 2 - 300 // 2, window_height // 2, 300, 62, font, (30, 30, 30), [200, 200, 200])
@@ -50,6 +51,8 @@ def password_changes(change_type):
 		window.blit(font.render(change_type, True, (255, 255, 255)), (window_width // 2 - font.render(change_type, True, (255, 255, 255)).get_width() // 2, 20))
 		password_EntryField.draw(window)
 		if change_type == "Change Password":
+			window.blit(font_2.render("Enter Password", True, (255, 255, 255)), (window_width // 2 - font_2.render("Enter Password", True, (255, 255, 255)).get_width() // 2, (password_EntryField.y - font_2.render("Enter Password", True, (255, 255, 255)).get_height()) - 20))
+			window.blit(font_2.render("Enter New Password", True, (255, 255, 255)), (window_width // 2 - font_2.render("Enter New Password", True, (255, 255, 255)).get_width() // 2, (new_password_EntryField.y - font_2.render("Enter New Password", True, (255, 255, 255)).get_height()) - 20))
 			new_password_EntryField.draw(window)
 			cancel_button.draw(window)
 		accept_button.draw(window)
