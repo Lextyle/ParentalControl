@@ -3,7 +3,6 @@ from os import system
 from getpass import getuser
 username = getuser()
 while True:
-	system("cls")
 	time = datetime.datetime.now()
 	dates = open(fr"C:\Users\{username}\AppData\Local\dates.py", "r")
 	today_date = dates.read().split("\n")[time.weekday()]
