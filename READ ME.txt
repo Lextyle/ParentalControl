@@ -1,4 +1,5 @@
 First think what you must do, press "WINDOWS_KEY + r", write "shell:startup", press Enter and move "watcher.exe" to startup folder (it should open after past actions).
+To change dates, you must open "DateChanger.exe" file.
 When you change dates, you will write dates like this 8:30-15:45.
 						      ^^^^^^^^^^
 						      ||||||||||
