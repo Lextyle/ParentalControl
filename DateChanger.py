@@ -5,6 +5,17 @@ from Button import *
 from getpass import getuser
 pygame.init()
 username = getuser()
+try:
+	file = open(fr"C:\Users\{username}\AppData\Local\dates.py", "r")
+except:
+	file = open(fr"C:\Users\{username}\AppData\Local\dates.py", "w")
+	file.write("0:0-24:0\n0:0-24:0\n0:0-24:0\n0:0-24:0\n0:0-24:0\n0:0-24:0\n0:0-24:0")
+file.close()
+try:
+	file = open(fr"C:\Users\{username}\AppData\Local\password.py", "r")
+except:
+	file = open(fr"C:\Users\{username}\AppData\Local\password.py", "w")
+file.close()
 window_width, window_height = size()
 window = pygame.display.set_mode((window_width, window_height), pygame.FULLSCREEN)
 font = pygame.font.Font("SFPixelate.ttf", 50)
@@ -12,28 +23,16 @@ font_2 = pygame.font.Font("SFPixelate.ttf", 25)
 def change_dates():
 	global EntryField
 	jump_width = (window_width - (font.render("Monday", True, (20, 25, 2)).get_width() + font.render("Tuesday", True, (20, 25, 2)).get_width() + font.render("Wednesday", True, (20, 25, 2)).get_width() + font.render("Thursday", True, (20, 25, 2)).get_width() + font.render("Friday", True, (20, 25, 2)).get_width() + font.render("Saturday", True, (20, 25, 2)).get_width() + font.render("Sunday", True, (20, 25, 2)).get_width())) // 6
-	try:
-		file = open("dates.py", "r")
-		text = file.read()
-		dates = text.split("\n")
-		monday_dates = dates[0].split(" ")
-		tuesday_dates = dates[1].split(" ")
-		wednesday_dates = dates[2].split(" ")
-		thursday_dates = dates[3].split(" ")
-		friday_dates = dates[4].split(" ")
-		saturday_dates = dates[5].split(" ")
-		sunday_dates = dates[6].split(" ")
-	except:
-		file = open("dates.py", "r")
-		text = file.read()
-		dates = text.split("\n")
-		monday_dates = []
-		tuesday_dates = []
-		wednesday_dates = []
-		thursday_dates = []
-		friday_dates = []
-		saturday_dates = []
-		sunday_dates = []
+	file = open(fr"C:\Users\{username}\AppData\Local\dates.py", "r")
+	text = file.read()
+	dates = text.split("\n")
+	monday_dates = dates[0].split(" ")
+	tuesday_dates = dates[1].split(" ")
+	wednesday_dates = dates[2].split(" ")
+	thursday_dates = dates[3].split(" ")
+	friday_dates = dates[4].split(" ")
+	saturday_dates = dates[5].split(" ")
+	sunday_dates = dates[6].split(" ")
 	file.close()
 	monday_EntryFields = []
 	tuesday_EntryFields = []
@@ -759,7 +758,7 @@ def change_dates():
 					entry_field.text_color = [200, 0, 0]
 					save = False
 			if save:
-				file = open("dates.py", "w")
+				file = open(fr"C:\Users\{username}\AppData\Local\dates.py", "w")
 				file.write(text)
 				file.close()
 				main()
@@ -816,15 +815,15 @@ def password_changes(change_type):
 		if accept_button.pressed:
 			if change_type == "Create Password":
 				if password_EntryField.text != "":
-					file = open("password.py", "w")
+					file = open(fr"C:\Users\{username}\AppData\Local\password.py", "w")
 					file.write(f"{password_EntryField.text}")
 					file.close()
 					break
 			if change_type == "Change Password":
-				file = open("password.py", "r")
+				file = open(fr"C:\Users\{username}\AppData\Local\password.py", "r")
 				if password_EntryField.text == file.read():
 					if new_password_EntryField.text != "":
-						file = open("password.py", "w")
+						file = open(fr"C:\Users\{username}\AppData\Local\password.py", "w")
 						file.write(f"{new_password_EntryField.text}")
 						file.close()
 						main()
@@ -844,12 +843,12 @@ def password_changes(change_type):
 			cancel_button.draw(window)
 		accept_button.draw(window)
 		pygame.display.update()
-file = open("password.py", "r")
+file = open(fr"C:\Users\{username}\AppData\Local\password.py", "r")
 if file.read() == "":
 	password_changes("Create Password")
 file.close()
 def main():
-	file = open("password.py", "r")
+	file = open(fr"C:\Users\{username}\AppData\Local\password.py", "r")
 	password = file.read()
 	password_EntryField = EntryField(window_width // 2 - 300 // 2, window_height // 2, 300, 62, font, (30, 30, 30), [200, 200, 200])
 	accept_button = Button(window_width // 2 - pygame.image.load(r"assets\accept_button_image.png").get_width() // 2, window_height - 200, pygame.image.load(r"assets\accept_button_image.png"), pygame.image.load(r"assets\hover_accept_button_image.png"), 0, 0)

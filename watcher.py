@@ -1,9 +1,11 @@
 import datetime
 from os import system
+from getpass import getuser
+username = getuser()
 while True:
 	system("cls")
 	time = datetime.datetime.now()
-	dates = open("dates.py", "r")
+	dates = open(fr"C:\Users\{username}\AppData\Local\dates.py", "r")
 	today_date = dates.read().split("\n")[time.weekday()]
 	today_date_arr = today_date.split(" ")
 	shutdown = True
@@ -19,5 +21,4 @@ while True:
 						shutdown = False
 						break
 	if shutdown:
-		print("SHUTDOWN")
-		#system("shutdown /s")
+		system("shutdown /s")
